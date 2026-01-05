@@ -1,0 +1,13 @@
+- name: Dry run test (no changes applied)
+  hosts: arista
+  gather_facts: false
+  connection: httpapi
+
+  tasks:
+    - name: Preview interface change
+      arista.eos.eos_interfaces:
+        config:
+          - name: Ethernet1
+            description: "DRY-RUN-ONLY"
+        state: merged
+      check_mode: true
