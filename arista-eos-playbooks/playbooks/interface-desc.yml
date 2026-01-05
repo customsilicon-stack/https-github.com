@@ -1,0 +1,12 @@
+- name: Set interface description
+  hosts: arista
+  gather_facts: false
+  connection: httpapi
+
+  tasks:
+    - name: Set description on Ethernet1
+      arista.eos.eos_interfaces:
+        config:
+          - name: Ethernet1
+            description: "AWX-MANAGED"
+        state: merged
